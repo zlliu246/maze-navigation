@@ -9,3 +9,9 @@ while True:
     choice = valid_input()
     result = get_new_pos(pos, maze, choice)
     pos = result["position"]
+    obj = result["object"]
+
+    if obj == "X":
+        display(maze, pos)
+        print("you win")
+        break
