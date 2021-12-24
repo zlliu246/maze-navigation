@@ -6,7 +6,7 @@ maze = get_maze()
 while True:
     display(maze, pos)
 
-    choice = valid_input()
+    choice = input("WASD to move >>> ")
     result = get_new_pos(pos, maze, choice)
     pos = result["position"]
     obj = result["object"]

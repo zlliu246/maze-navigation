@@ -24,14 +24,11 @@ def display(maze, pos=(0,0), legend=legend):
         print("".join(row))
     print()
 
-def valid_input():
-    choice = input("WASD to move >>>").lower()
-    while choice not in ["w", "a", "s", "d"]:
-        print("Invalid choice")
-        choice = input("WASD to move >>>").lower()
-    return choice
-
 def get_new_pos(pos, maze, move, legend=legend):
+
+    if move not in list("wasd"):
+        return {"position": pos, "object": "-"}
+
     i,j = pos
     di,dj = {"w":(-1,0), "a": (0,-1), "s":(1,0), "d":(0,1)}[move]
     ni,nj = i+di, j+dj
@@ -44,4 +41,3 @@ def get_new_pos(pos, maze, move, legend=legend):
         return {"position":pos, "object":"-"}
     
     return {"position":(ni,nj), "object":new}
-
