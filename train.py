@@ -47,8 +47,10 @@ for i in range(NUM_ITERATIONS):
 
     pos = newpos
 
+import os
 import pickle 
 
+os.system("mkdir saved")
 pickle.dump(d, open("saved/1.sav", "wb"))
 
 for k,v in d.items():
