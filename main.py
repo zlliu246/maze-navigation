@@ -1,30 +1,31 @@
 import random
 from prep import *
 
-def is_solvable(maze, start_pos=(0,0)):
+def is_solvable(maze, start_position=(0,0)):
 
-    si,sj = start_pos
-    seen = set()
-    queue = [(si,sj)]
+    seen = set([start_position])
+    queue = [start_position]
 
-    while len(queue) > 0:
+    while queue:
         i,j = queue.pop(0)
-        seen.add((i,j))
-
-        for di,dj in [(-1,0),(0,-1),(1,0),(0,1)]:
+        for di,dj in [(1,0),(-1,0),(0,1),(0,-1)]:
             ni,nj = i+di, j+dj
+
+            if (ni,nj) in seen:
+                continue
 
             if ni<0 or nj<0 or ni>=len(maze) or nj>=len(maze[0]):
                 continue
 
-            obj = maze[ni][nj]
-
-            if obj == "X":
+            if maze[ni][nj] == "X":
                 return True
-            
-            if obj == "-" and (ni,nj) not in seen:
-                queue.append((ni,nj))
+
+            if maze[ni][nj] == "#":
+                continue
+
+            if maze[ni][nj] == "-":
                 seen.add((ni,nj))
+                queue.append((ni,nj))
 
     return False
 
